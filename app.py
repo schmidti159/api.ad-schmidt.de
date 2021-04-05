@@ -12,7 +12,7 @@ from secrets import API_SECRET
 
 app = Flask(__name__)
 
-VALID_BRANCH_NAMES=['pre-prod','master','test-branch']
+VALID_BRANCH_NAMES=['pre-prod','master']
 VALID_REPO_NAMES=['schmidti159/blog.ad-schmidt.de']
 
 @app.route("/")
