@@ -1,3 +1,5 @@
 ENV
 *.pid
 __pycache__
+blog.ad-schmidt.de
+secrets.py
