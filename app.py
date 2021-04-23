@@ -46,12 +46,15 @@ def checkBranchAndRepo(content, branch):
 
 
 def checkoutAndDeploy(branch):
+    # fetch changes
+    subprocess.run(['git','fetch'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
+    # reset to the current state
+    subprocess.run(['git','reset','--hard','origin/'+branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     # clean the repo
-    subprocess.run(['git','reset','--hard'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     subprocess.run(['git','clean','-fd'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     # checkout
     subprocess.run(['git','checkout','-B',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
-    subprocess.run(['git','pull','origin',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
+    subprocess.run(['git','pull','-s','recursive','-X','theirs','origin',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     # deploy
     subprocess.run(['bash','deploy.sh'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
 
