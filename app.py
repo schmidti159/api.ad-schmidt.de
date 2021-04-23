@@ -50,7 +50,7 @@ def checkoutAndDeploy(branch):
     subprocess.run(['git','reset','--hard'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     subprocess.run(['git','clean','-fd'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     # checkout
-    subprocess.run(['git','checkout','-b',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
+    subprocess.run(['git','checkout','-B',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     subprocess.run(['git','pull','origin',branch], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
     # deploy
     subprocess.run(['bash','deploy.sh'], stdout=sys.stdout, stdin=sys.stdin, cwd='blog.ad-schmidt.de')
